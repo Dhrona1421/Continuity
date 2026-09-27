@@ -1,0 +1,10 @@
+{
+  "product": "GhostSOC",
+  "bundle": "easy-install",
+  "git_commit": "a0e653d8c82787797431fc4104a64ab3122bc5db",
+  "generated_at": "2026-08-17T19:50:05+00:00",
+  "tracked_files": 107,
+  "contains_secrets": false,
+  "quick_start_linux_macos": "./install.sh",
+  "quick_start_windows": ".\\install.ps1"
+}

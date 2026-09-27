@@ -1,0 +1,22 @@
+title: High Severity Suricata Alert
+id: GS-SIGMA-003
+status: stable
+description: Promotes high severity Suricata IDS records into GhostSOC alerts.
+author: GhostSOC
+logsource:
+  category: network
+  product: suricata
+detection:
+  selection:
+    source_type: suricata
+    severity:
+      - HIGH
+      - CRITICAL
+  condition: selection
+falsepositives:
+  - Sensor rule false positive
+level: high
+tags:
+  - attack.command-and-control
+ghostsoc:
+  confidence: 0.75

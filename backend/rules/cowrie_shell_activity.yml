@@ -1,0 +1,21 @@
+title: Cowrie Deception Shell Activity
+id: GS-SIGMA-002
+status: experimental
+description: Detects command activity reported by the controlled Cowrie honeypot connector.
+author: GhostSOC
+logsource:
+  product: linux
+  service: cowrie
+detection:
+  selection:
+    source_type: cowrie
+    event_type: command_input
+  condition: selection
+falsepositives:
+  - Authorized deception lab testing
+level: medium
+tags:
+  - attack.execution
+  - attack.t1059.004
+ghostsoc:
+  confidence: 0.80

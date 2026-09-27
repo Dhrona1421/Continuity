@@ -1,0 +1,22 @@
+.memory-workspace { display: grid; gap: 1.2rem; margin: 1.5rem 0 4rem; }
+.memory-workspace .panel { min-width: 0; }
+.memory-workspace .panel-head { gap: 1rem; flex-wrap: wrap; }
+.memory-workspace h3 { margin: .2rem 0 .75rem; }
+.memory-workspace p, .memory-workspace li { line-height: 1.6; overflow-wrap: anywhere; }
+.memory-workspace ol { padding-left: 1.6rem; }
+.memory-workspace li { margin: .65rem 0; }
+.memory-workspace details { padding: 1rem; border: 1px solid #334250; border-radius: .7rem; margin: 1rem 0; }
+.memory-workspace summary { cursor: pointer; font-weight: 650; }
+.memory-workspace details article { padding: .7rem 0; border-bottom: 1px solid #334250; overflow-wrap: anywhere; }
+.memory-workspace label { display: block; margin: .8rem 0; }
+.memory-workspace textarea, .memory-workspace input:not([type="checkbox"]) { width: 100%; margin-top: .35rem; padding: .7rem .8rem; background: #07131c; border: 1px solid #29404d; border-radius: 4px; color: #dce7ef; font: inherit; }
+.memory-workspace textarea { min-height: 5rem; resize: vertical; }
+.memory-workspace textarea:focus-visible, .memory-workspace input:focus-visible { outline: 2px solid #62b9ae; outline-offset: 2px; }
+.memory-workspace .action-list button { background: #10212b; border: 1px solid #2a414d; color: #c4d5df; padding: .55rem .85rem; }
+.memory-workspace .action-list button[aria-pressed="true"] { background: #17332f; border-color: #3d756e; color: #e4f4f0; }
+.memory-workspace .action-list { display: flex; flex-wrap: wrap; gap: .5rem; }
+.memory-workspace .action-list button[aria-pressed="true"] { outline: 2px solid #43c4de; }
+.memory-workspace .current-experience, .memory-workspace .feedback-history { margin-top: 1.25rem; padding: 1rem; border: 1px solid #334250; border-radius: .7rem; }
+.memory-workspace .current-experience h4, .memory-workspace .feedback-history h4 { margin: 0 0 .5rem; }
+.memory-workspace .current-experience small { font-weight: 400; }
+.memory-workspace .feedback-history article { padding: .75rem 0; border-top: 1px solid #334250; }

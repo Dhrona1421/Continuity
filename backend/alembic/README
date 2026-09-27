@@ -1,0 +1,1 @@
+Single database migration environment for GhostSOC. Run `alembic upgrade head`; do not use metadata creation in production.

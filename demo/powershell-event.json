@@ -1,0 +1,26 @@
+{
+  "event_id": "demo-sysmon-001",
+  "timestamp": "2026-08-17T09:30:00Z",
+  "source": "sysmon-demo-fixture",
+  "source_type": "sysmon",
+  "host": "demo-endpoint-01",
+  "user": "LAB\\analyst",
+  "process": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+  "parent_process": "C:\\Windows\\explorer.exe",
+  "command_line": "powershell.exe -EncodedCommand ZABlAG0AbwAtAG8AbgBsAHkA",
+  "src_ip": "10.10.0.15",
+  "dst_ip": "198.51.100.42",
+  "dst_port": 443,
+  "domain": "controlled-demo.invalid",
+  "url": "https://controlled-demo.invalid/payload",
+  "hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "file": "C:\\Lab\\controlled-demo.ps1",
+  "event_type": "process_creation",
+  "severity": "HIGH",
+  "raw_reference": "fixture:demo/powershell-event.json",
+  "metadata": {
+    "authorized_simulation": true,
+    "atomic_technique": "T1059.001",
+    "note": "Synthetic event only; does not execute PowerShell"
+  }
+}

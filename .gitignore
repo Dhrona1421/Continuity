@@ -1,0 +1,40 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+.coverage
+htmlcov/
+
+# JavaScript
+node_modules/
+dist/
+coverage/
+.npm/
+
+# Runtime data
+*.db
+*.sqlite
+*.sqlite3
+reports/
+preview-reports/
+evidence/
+logs/
+release/
+
+# Editors / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp

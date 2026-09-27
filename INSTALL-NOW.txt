@@ -1,0 +1,13 @@
+Continuity local source bundle
+
+Windows: start Docker Desktop, open PowerShell in this folder, then run:
+  .\install.ps1
+
+Linux/macOS:
+  chmod +x install.sh start.sh stop.sh
+  ./install.sh
+
+Open http://localhost:8080. Use the administrator credentials printed by the installer (or stored in the private .env file if it already existed).
+Full instructions: INSTALL.md
+
+Local Docker runtime and health checks passed on 2026-09-27. Live Hindsight/Groq behavior requires credentials; see docs/RELEASE_STATUS.md.

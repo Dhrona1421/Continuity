@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools==80.9.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ghostsoc"
+version = "0.1.0"
+description = "Continuity security operations with institutional memory API"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+  "alembic==1.16.5",
+  "argon2-cffi==25.1.0",
+  "fastapi==0.141.1",
+  "httpx==0.28.1",
+  "PyJWT==2.15.0",
+  "pydantic-settings==2.10.1",
+  "psycopg[binary]==3.2.9",
+  "PyYAML==6.0.2",
+  "reportlab==4.4.3",
+  "SQLAlchemy==2.0.43",
+  "uvicorn[standard]==0.35.0",
+]
+
+[project.optional-dependencies]
+test = [
+  "pytest==9.1.1",
+  "pytest-cov==6.2.1",
+  "ruff==0.12.10",
+]
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.setuptools.package-data]
+app = ["data/*.json", "data/rules/*.yml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --strict-markers"
+markers = ["integration: tests spanning multiple application services"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "S"]
+ignore = ["B008", "S101"]
+
+[tool.coverage.run]
+source = ["app"]
+omit = ["app/main.py"]

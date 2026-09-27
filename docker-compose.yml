@@ -1,0 +1,178 @@
+name: continuity
+
+services:
+  postgres:
+    image: postgres:16.4-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ghostsoc
+      POSTGRES_USER: ghostsoc
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ghostsoc-local-only}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ghostsoc -d ghostsoc"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    security_opt:
+      - no-new-privileges:true
+
+  opensearch:
+    image: opensearchproject/opensearch:2.19.3
+    restart: unless-stopped
+    environment:
+      discovery.type: single-node
+      DISABLE_SECURITY_PLUGIN: ${GHOSTSOC_OPENSEARCH_DISABLE_SECURITY:-true}
+      DISABLE_INSTALL_DEMO_CONFIG: "true"
+      OPENSEARCH_JAVA_OPTS: -Xms512m -Xmx512m
+    volumes:
+      - opensearch-data:/usr/share/opensearch/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:9200/_cluster/health >/dev/null || exit 1"]
+      interval: 15s
+      timeout: 8s
+      retries: 20
+      start_period: 40s
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    security_opt:
+      - no-new-privileges:true
+
+  backend:
+    build:
+      context: ./backend
+    restart: unless-stopped
+    environment:
+      GHOSTSOC_ENV: ${GHOSTSOC_ENV:-development}
+      GHOSTSOC_SECRET_KEY: ${GHOSTSOC_SECRET_KEY:-development-only-secret-key-change-me}
+      GHOSTSOC_DATABASE_URL: postgresql+psycopg://ghostsoc:${POSTGRES_PASSWORD:-ghostsoc-local-only}@postgres:5432/ghostsoc
+      GHOSTSOC_CORS_ORIGINS: ${GHOSTSOC_CORS_ORIGINS:-http://localhost:8080}
+      GHOSTSOC_BOOTSTRAP_ADMIN_EMAIL: ${GHOSTSOC_BOOTSTRAP_ADMIN_EMAIL:-admin@ghostsoc.local}
+      GHOSTSOC_BOOTSTRAP_ADMIN_PASSWORD: ${GHOSTSOC_BOOTSTRAP_ADMIN_PASSWORD:-change-this-before-non-demo-use}
+      GHOSTSOC_SESSION_COOKIE_SECURE: ${GHOSTSOC_SESSION_COOKIE_SECURE:-false}
+      GHOSTSOC_SESSION_COOKIE_PARTITIONED: ${GHOSTSOC_SESSION_COOKIE_PARTITIONED:-false}
+      GHOSTSOC_DRY_RUN: ${GHOSTSOC_DRY_RUN:-true}
+      GHOSTSOC_DEMO_MODE: ${GHOSTSOC_DEMO_MODE:-true}
+      GHOSTSOC_DEMO_AUTO_ACCESS: ${GHOSTSOC_DEMO_AUTO_ACCESS:-false}
+      GHOSTSOC_AUTHORIZED_TARGETS: ${GHOSTSOC_AUTHORIZED_TARGETS:-demo-endpoint-01,demo-endpoint-02}
+      GHOSTSOC_WEB_ALLOWED_HOSTS: ${GHOSTSOC_WEB_ALLOWED_HOSTS:-demo-web.local,authorized-web.test}
+      GHOSTSOC_REPORT_DIR: /var/lib/ghostsoc/reports
+      GHOSTSOC_EVIDENCE_DIR: /var/lib/ghostsoc/evidence
+      GHOSTSOC_OPENSEARCH_URL: http://opensearch:9200
+      GHOSTSOC_LLM_BASE_URL: ${GHOSTSOC_LLM_BASE_URL:-}
+      GHOSTSOC_LLM_API_KEY: ${GHOSTSOC_LLM_API_KEY:-}
+      GHOSTSOC_LLM_MODEL: ${GHOSTSOC_LLM_MODEL:-openai/gpt-oss-120b}
+      GHOSTSOC_LLM_TIMEOUT_SECONDS: ${GHOSTSOC_LLM_TIMEOUT_SECONDS:-15}
+      GHOSTSOC_HINDSIGHT_URL: ${GHOSTSOC_HINDSIGHT_URL:-}
+      GHOSTSOC_HINDSIGHT_API_KEY: ${GHOSTSOC_HINDSIGHT_API_KEY:-}
+      GHOSTSOC_HINDSIGHT_BANK_ID: ${GHOSTSOC_HINDSIGHT_BANK_ID:-ghostsoc-security}
+      GHOSTSOC_HINDSIGHT_TIMEOUT_SECONDS: ${GHOSTSOC_HINDSIGHT_TIMEOUT_SECONDS:-60}
+      GHOSTSOC_ALLOW_PRIVATE_CONNECTORS: ${GHOSTSOC_ALLOW_PRIVATE_CONNECTORS:-false}
+      GHOSTSOC_WAZUH_URL: ${GHOSTSOC_WAZUH_URL:-}
+      GHOSTSOC_WAZUH_TOKEN: ${GHOSTSOC_WAZUH_TOKEN:-}
+      GHOSTSOC_VELOCIRAPTOR_URL: ${GHOSTSOC_VELOCIRAPTOR_URL:-}
+      GHOSTSOC_VELOCIRAPTOR_TOKEN: ${GHOSTSOC_VELOCIRAPTOR_TOKEN:-}
+      GHOSTSOC_ARKIME_URL: ${GHOSTSOC_ARKIME_URL:-}
+      GHOSTSOC_MISP_URL: ${GHOSTSOC_MISP_URL:-}
+      GHOSTSOC_MISP_API_KEY: ${GHOSTSOC_MISP_API_KEY:-}
+      GHOSTSOC_OPENCTI_URL: ${GHOSTSOC_OPENCTI_URL:-}
+      GHOSTSOC_OPENCTI_TOKEN: ${GHOSTSOC_OPENCTI_TOKEN:-}
+      GHOSTSOC_SHUFFLE_URL: ${GHOSTSOC_SHUFFLE_URL:-}
+      GHOSTSOC_SHUFFLE_API_KEY: ${GHOSTSOC_SHUFFLE_API_KEY:-}
+      GHOSTSOC_ABUSE_CH_AUTH_KEY: ${GHOSTSOC_ABUSE_CH_AUTH_KEY:-}
+      GHOSTSOC_ABUSEIPDB_API_KEY: ${GHOSTSOC_ABUSEIPDB_API_KEY:-}
+      GHOSTSOC_VIRUSTOTAL_API_KEY: ${GHOSTSOC_VIRUSTOTAL_API_KEY:-}
+    volumes:
+      - report-data:/var/lib/ghostsoc/reports
+      - evidence-data:/var/lib/ghostsoc/evidence
+    depends_on:
+      postgres:
+        condition: service_healthy
+      opensearch:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/v1/health', timeout=3)"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    security_opt:
+      - no-new-privileges:true
+
+  frontend:
+    build:
+      context: ./frontend
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8080:8080"
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1:8080/ || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    security_opt:
+      - no-new-privileges:true
+
+  hindsight:
+    image: ghcr.io/vectorize-io/hindsight:latest
+    profiles: ["memory"]
+    restart: unless-stopped
+    shm_size: 1gb
+    environment:
+      HINDSIGHT_API_LLM_API_KEY: ${HINDSIGHT_API_LLM_API_KEY:-}
+      HINDSIGHT_API_WORKER_ID: ghostsoc-memory-worker
+    volumes:
+      - hindsight-data:/home/hindsight/.pg0
+    security_opt:
+      - no-new-privileges:true
+
+  demo-runner:
+    image: python:3.13-alpine
+    profiles: ["demo", "full"]
+    restart: "no"
+    environment:
+      GHOSTSOC_API_URL: http://backend:8000/api/v1
+      GHOSTSOC_DEMO_EMAIL: ${GHOSTSOC_BOOTSTRAP_ADMIN_EMAIL:-admin@ghostsoc.local}
+      GHOSTSOC_DEMO_PASSWORD: ${GHOSTSOC_BOOTSTRAP_ADMIN_PASSWORD:-change-this-before-non-demo-use}
+    volumes:
+      - ./scripts:/scripts:ro
+    command: ["python", "/scripts/demo_client.py", "run"]
+    depends_on:
+      backend:
+        condition: service_healthy
+    security_opt:
+      - no-new-privileges:true
+
+  web-demo-runner:
+    image: python:3.13-alpine
+    profiles: ["demo", "full"]
+    restart: "no"
+    environment:
+      GHOSTSOC_API_URL: http://backend:8000/api/v1
+      GHOSTSOC_DEMO_EMAIL: ${GHOSTSOC_BOOTSTRAP_ADMIN_EMAIL:-admin@ghostsoc.local}
+      GHOSTSOC_DEMO_PASSWORD: ${GHOSTSOC_BOOTSTRAP_ADMIN_PASSWORD:-change-this-before-non-demo-use}
+    volumes:
+      - ./scripts:/scripts:ro
+    command: ["python", "/scripts/demo_client.py", "web-run"]
+    depends_on:
+      backend:
+        condition: service_healthy
+    security_opt:
+      - no-new-privileges:true
+
+volumes:
+  postgres-data:
+  opensearch-data:
+  report-data:
+  evidence-data:
+  hindsight-data:
