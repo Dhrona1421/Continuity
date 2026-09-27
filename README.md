@@ -50,8 +50,8 @@ Continuity checks recalled document IDs against retained incident records before
 Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) with Compose v2, then run in PowerShell:
 
 ```powershell
-git clone https://github.com/Dhrona1421/Threat-X.git
-Set-Location Threat-X
+git clone https://github.com/Dhrona1421/Continuity.git
+Set-Location Continuity
 Set-ExecutionPolicy -Scope Process Bypass
 .\install.ps1
 ```
@@ -61,8 +61,8 @@ Set-ExecutionPolicy -Scope Process Bypass
 Install Docker Engine with Compose v2, then run:
 
 ```bash
-git clone https://github.com/Dhrona1421/Threat-X.git
-cd Threat-X
+git clone https://github.com/Dhrona1421/Continuity.git
+cd Continuity
 chmod +x install.sh
 ./install.sh
 ```
