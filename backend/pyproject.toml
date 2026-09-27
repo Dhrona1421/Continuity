@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "Continuity security operations with institutional memory API"
 requires-python = ">=3.11,<3.14"
 dependencies = [
-  "alembic==1.16.5",
+  "alembic==1.20.0",
   "argon2-cffi==25.1.0",
   "fastapi==0.141.1",
   "httpx==0.28.1",
