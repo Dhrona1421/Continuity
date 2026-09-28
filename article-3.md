@@ -4,7 +4,11 @@ An AI recommendation can be useful and still be unsafe to execute automatically.
 
 We built Continuity around a simple boundary: the system can recall experience and recommend what to investigate, but the analyst decides what to do. Continuity is the public product name for the security operations system in the GhostSOC repository. Hindsight supplies persistent memory, Groq supplies language-model reasoning, and the analyst remains responsible for the response.
 
-![Lead image: Continuity’s recommendation panel reports no relevant historical experience and leaves the recommendation for analyst review.](docs/assets/continuity-ai-recommendation.png)
+![Lead image: Continuity Overview dashboard showing incident attention, system health, and recent security activity.](docs/assets/continuity-overview.png)
+
+*The dashboard is the entry point; analysts move from current activity into investigation and memory.*
+
+![Continuity’s recommendation panel reports no relevant historical experience and leaves the recommendation for analyst review.](docs/assets/continuity-ai-recommendation.png)
 
 *Even when memory has no match, the interface exposes that fact and keeps a person in the decision loop.*
 

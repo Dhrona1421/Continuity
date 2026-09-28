@@ -3,25 +3,25 @@
   <desc id="desc">An analyst reviews an incident and its outcome. Continuity retains the experience in Hindsight, verifies recalled document IDs against retained source records, gives verified history and current evidence to Groq for an advisory recommendation, and sends analyst feedback into the next learning cycle.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#081625"/><stop offset="1" stop-color="#102b40"/>
+      <stop offset="0" stop-color="#F2F6F9"/><stop offset="1" stop-color="#E8EFF4"/>
     </linearGradient>
     <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0" stop-color="#26d6b1"/><stop offset="1" stop-color="#38a6ed"/>
     </linearGradient>
     <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#48cbb5"/>
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#339F93"/>
     </marker>
     <style>
-      text{font-family:Inter,Segoe UI,Arial,sans-serif;fill:#edf5fc}
-      .eyebrow{font-size:17px;font-weight:700;letter-spacing:3px;fill:#71d9c7}
+      text{font-family:Inter,Segoe UI,Arial,sans-serif;fill:#1D3245}
+      .eyebrow{font-size:17px;font-weight:700;letter-spacing:3px;fill:#328C83}
       .title{font-size:38px;font-weight:750}
       .name{font-size:24px;font-weight:700}
-      .body{font-size:18px;fill:#bed0e1}
-      .small{font-size:15px;fill:#a7bdd1}
-      .box{fill:#11253a;stroke:#36516a;stroke-width:2}
-      .green{fill:#0d302f;stroke:#2cb99f;stroke-width:2}
-      .blue{fill:#102c43;stroke:#339fe0;stroke-width:2}
-      .line{fill:none;stroke:#48cbb5;stroke-width:3;marker-end:url(#arrow)}
+      .body{font-size:18px;fill:#536A7C}
+      .small{font-size:15px;fill:#657B8D}
+      .box{fill:#FFFFFF;stroke:#D7E1E9;stroke-width:2}
+      .green{fill:#EAF5EF;stroke:#2cb99f;stroke-width:2}
+      .blue{fill:#EAF3FB;stroke:#438BC4;stroke-width:2}
+      .line{fill:none;stroke:#339F93;stroke-width:3;marker-end:url(#arrow)}
     </style>
   </defs>
   <rect width="1440" height="900" rx="28" fill="url(#bg)"/>
@@ -69,7 +69,7 @@
   <path d="M545 570 H436" class="line"/>
   <path d="M251 485 V405 H251 V375" class="line"/>
 
-  <rect x="76" y="735" width="1288" height="94" rx="18" fill="#0a1c2b" stroke="#28465e" stroke-width="2"/>
+  <rect x="76" y="735" width="1288" height="94" rx="18" fill="#FFFFFF" stroke="#D7E1E9" stroke-width="2"/>
   <text x="112" y="778" class="eyebrow">SAFEGUARDS</text>
   <text x="300" y="778" class="body">Unlinked or unavailable memory stays explicit</text>
   <text x="860" y="778" class="body">Synthetic walkthrough · dry-run response</text>

@@ -3,17 +3,17 @@
   <desc id="desc">Two code panels excerpted from backend/app/services/hindsight.py show Continuity retaining incident experience with a stable document ID and recalling facts before matching returned document IDs to retained source records.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#081625"/><stop offset="1" stop-color="#112c42"/>
+      <stop offset="0" stop-color="#F2F6F9"/><stop offset="1" stop-color="#E8EFF4"/>
     </linearGradient>
     <style>
-      text{font-family:Inter,Segoe UI,Arial,sans-serif;fill:#edf5fc}
-      .eyebrow{font-size:16px;font-weight:700;letter-spacing:2.6px;fill:#69d6c2}
+      text{font-family:Inter,Segoe UI,Arial,sans-serif;fill:#1D3245}
+      .eyebrow{font-size:16px;font-weight:700;letter-spacing:2.6px;fill:#328C83}
       .heading{font-size:27px;font-weight:700}
-      .file{font-size:15px;fill:#9db5c9}
-      .code{font-family:Cascadia Code,Consolas,monospace;font-size:15px;fill:#d7e7f4}
-      .kw{fill:#82b8ff}.str{fill:#a5d6a7}.fn{fill:#f4c66a}.cm{fill:#8ea7bb}
-      .card{fill:#0c1c2b;stroke:#29445b;stroke-width:2}
-      .pill{fill:#13344a;stroke:#2d576c;stroke-width:1}
+      .file{font-size:15px;fill:#657B8D}
+      .code{font-family:Cascadia Code,Consolas,monospace;font-size:15px;fill:#263B50}
+      .kw{fill:#246EB1}.str{fill:#34875D}.fn{fill:#A66C13}.cm{fill:#708395}
+      .card{fill:#FFFFFF;stroke:#D8E2EA;stroke-width:2}
+      .pill{fill:#E8F1F6;stroke:#C9D9E4;stroke-width:1}
     </style>
   </defs>
   <rect width="1440" height="820" rx="26" fill="url(#bg)"/>

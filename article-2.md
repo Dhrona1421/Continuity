@@ -4,7 +4,11 @@ A security postmortem can document what finally worked and still omit the detail
 
 We built Continuity to carry that experience into future investigations. The product lives in the GhostSOC repository, but we present it publicly as Continuity: a security operations workflow that retains analyst-reviewed experience, recalls it when relevant, and keeps recommendations under human control.
 
-![Lead image: Continuity Security Memory displays a recalled lesson about preserving authentication evidence and marks memories without a linked source incident as unlinked.](docs/assets/continuity-hindsight-memory-results.png)
+![Lead image: Continuity Overview dashboard showing the light operational workspace, incident summaries, service health, and recent event feed.](docs/assets/continuity-overview.png)
+
+*The product overview sets the scene for the incident learning workflow described here.*
+
+![Continuity Security Memory displays a recalled lesson about preserving authentication evidence and marks memories without a linked source incident as unlinked.](docs/assets/continuity-hindsight-memory-results.png)
 
 *This result is useful to inspect, while its unlinked status keeps it separate from source-backed case history.*
 
@@ -54,10 +58,6 @@ An old failure can also mislead if the environment has changed. Our recommendati
 This check also prevents a broad memory-bank search from becoming a shortcut around incident provenance. A fact may be relevant enough to show in search and still lack a linked source case. Continuity keeps that fact visible for exploration, but the recommendation path requires a retained source record before calling it prior incident experience.
 
 The distinction is especially important for failure memory. A sentence such as “containment caused evidence loss” needs a case, an outcome, and a condition before it can inform another response. Without those details, the system could turn a partial recollection into a confident rule. Our implementation keeps the structured source experience beside the provider document ID so the analyst can inspect where that lesson came from.
-
-![Continuity source code showing the Hindsight retain request and recall call followed by retained-source matching.](docs/assets/continuity-hindsight-retain-recall.svg)
-
-*The code view follows the actual retain and recall path in the project source.*
 
 ## What this design does and does not show
 

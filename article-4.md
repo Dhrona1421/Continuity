@@ -4,7 +4,11 @@ The first hard problem in adding memory to a security assistant was not getting 
 
 We built Continuity—the public-facing name for the security operations system in the GhostSOC repository—around that question. Hindsight handles retain and recall. Our application keeps the structured source record and verifies returned document IDs. Groq receives the current incident plus eligible history and returns an advisory recommendation. Each layer has one job.
 
-![Lead image: Continuity architecture shows retained experience flowing through Hindsight and a provenance check before Groq recommends next steps for analyst review.](docs/assets/continuity-memory-architecture.svg)
+![Lead image: Continuity Overview dashboard showing incident status, backend health, and the live security event feed.](docs/assets/continuity-overview.png)
+
+*The overview connects operational monitoring with the memory and investigation workflow.*
+
+![Continuity architecture shows retained experience flowing through Hindsight and a provenance check before Groq recommends next steps for analyst review.](docs/assets/continuity-memory-architecture.svg)
 
 *Hindsight retrieves; Continuity checks source and relevance; Groq recommends; the analyst decides.*
 

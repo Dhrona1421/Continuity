@@ -4,7 +4,11 @@ An incident memory can sound relevant and still be the wrong memory to trust. In
 
 That became the central design question behind Continuity, the product name for the security operations system in the GhostSOC repository. Continuity turns analyst-reviewed investigations into source-checked experience for the next case, using Hindsight memory and Groq reasoning.
 
-![Lead image: Continuity architecture showing an analyst-reviewed incident retained in Hindsight, checked for provenance by Continuity, passed with current evidence to Groq, and returned to an analyst for a decision.](docs/assets/continuity-memory-architecture.svg)
+![Lead image: Continuity Overview dashboard showing incident attention, system health, and recent security events.](docs/assets/continuity-overview.png)
+
+*The overview brings the workflow into focus: one place to review incidents, live activity, and retained experience.*
+
+![Continuity architecture showing an analyst-reviewed incident retained in Hindsight, checked for provenance by Continuity, passed with current evidence to Groq, and returned to an analyst for a decision.](docs/assets/continuity-memory-architecture.svg)
 
 *Continuity’s memory loop: Hindsight retrieves; Continuity checks provenance; the analyst remains in control.*
 
@@ -54,10 +58,6 @@ The instruction in the agent service makes the no-history behavior explicit:
 ```
 
 Groq is the reasoning layer, not the response executor. An analyst can accept, modify, or reject a recommendation. That decision—and an optional explanation, outcome, or corrected lesson—can be retained as additional experience. A rejected recommendation can be useful memory too: it records a boundary that future reasoning should respect.
-
-![Continuity’s recommendation panel shows no relevant historical experience and leaves the recommendation for analyst review.](docs/assets/continuity-ai-recommendation.png)
-
-*When no prior case qualifies, the panel says so and keeps the decision with the analyst.*
 
 ## A before-and-after in synthetic NovaBank
 
