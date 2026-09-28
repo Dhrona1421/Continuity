@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="820" viewBox="0 0 1440 820" role="img" aria-labelledby="title desc">
+  <title id="title">Real Hindsight retain and recall code from Continuity</title>
+  <desc id="desc">Two code panels excerpted from backend/app/services/hindsight.py show Continuity retaining incident experience with a stable document ID and recalling facts before matching returned document IDs to retained source records.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#081625"/><stop offset="1" stop-color="#112c42"/>
+    </linearGradient>
+    <style>
+      text{font-family:Inter,Segoe UI,Arial,sans-serif;fill:#edf5fc}
+      .eyebrow{font-size:16px;font-weight:700;letter-spacing:2.6px;fill:#69d6c2}
+      .heading{font-size:27px;font-weight:700}
+      .file{font-size:15px;fill:#9db5c9}
+      .code{font-family:Cascadia Code,Consolas,monospace;font-size:15px;fill:#d7e7f4}
+      .kw{fill:#82b8ff}.str{fill:#a5d6a7}.fn{fill:#f4c66a}.cm{fill:#8ea7bb}
+      .card{fill:#0c1c2b;stroke:#29445b;stroke-width:2}
+      .pill{fill:#13344a;stroke:#2d576c;stroke-width:1}
+    </style>
+  </defs>
+  <rect width="1440" height="820" rx="26" fill="url(#bg)"/>
+  <text x="64" y="67" class="eyebrow">CONTINUITY · REAL SOURCE CODE</text>
+  <text x="64" y="116" class="heading">The memory calls are ordinary API calls—with a provenance check after recall.</text>
+
+  <rect x="64" y="155" width="634" height="590" rx="18" class="card"/>
+  <rect x="90" y="180" width="220" height="32" rx="16" class="pill"/>
+  <text x="108" y="202" class="eyebrow">RETAIN</text>
+  <text x="90" y="244" class="file">backend/app/services/hindsight.py · retain()</text>
+  <text x="90" y="294" class="code">
+    <tspan x="90" dy="0"><tspan class="kw">result</tspan> = _call(<tspan class="str">"POST"</tspan>, _path(<tspan class="str">""</tspan>), {</tspan>
+    <tspan x="90" dy="29">    <tspan class="str">"items"</tspan>: [{</tspan>
+    <tspan x="90" dy="29">        <tspan class="str">"document_id"</tspan>: row.document_id,</tspan>
+    <tspan x="90" dy="29">        <tspan class="str">"context"</tspan>: <tspan class="str">"security incident experience,</tspan></tspan>
+    <tspan x="90" dy="25">                   including failures and lessons",</tspan>
+    <tspan x="90" dy="29">        <tspan class="str">"content"</tspan>: _narrative(experience)</tspan>
+    <tspan x="90" dy="29">    }], <tspan class="str">"async"</tspan>: <tspan class="kw">False</tspan></tspan>
+    <tspan x="90" dy="29">}, timeout_seconds=timeout_seconds)</tspan>
+    <tspan x="90" dy="53"><tspan class="cm"># Only a successful synchronous retain is eligible.</tspan></tspan>
+    <tspan x="90" dy="29">row.status = <tspan class="str">"RETAINED"</tspan> <tspan class="kw">if</tspan> result <tspan class="kw">and</tspan></tspan>
+    <tspan x="90" dy="25">    result.get(<tspan class="str">"success"</tspan>) <tspan class="kw">is</tspan> <tspan class="kw">True</tspan> <tspan class="kw">and</tspan> <tspan class="kw">not</tspan></tspan>
+    <tspan x="90" dy="25">    result.get(<tspan class="str">"async"</tspan>) <tspan class="kw">else</tspan> <tspan class="str">"UNAVAILABLE"</tspan></tspan>
+  </text>
+
+  <rect x="742" y="155" width="634" height="590" rx="18" class="card"/>
+  <rect x="768" y="180" width="220" height="32" rx="16" class="pill"/>
+  <text x="786" y="202" class="eyebrow">RECALL + VERIFY</text>
+  <text x="768" y="244" class="file">backend/app/services/hindsight.py · recall()</text>
+  <text x="768" y="294" class="code">
+    <tspan x="768" dy="0"><tspan class="kw">result</tspan> = _call(<tspan class="str">"POST"</tspan>, _path(<tspan class="str">"/recall"</tspan>), {</tspan>
+    <tspan x="768" dy="29">    <tspan class="str">"query"</tspan>: query, <tspan class="str">"budget"</tspan>: <tspan class="str">"high"</tspan>,</tspan>
+    <tspan x="768" dy="29">    <tspan class="str">"prefer_observations"</tspan>: <tspan class="kw">True</tspan>,</tspan>
+    <tspan x="768" dy="29">})</tspan>
+    <tspan x="768" dy="53"><tspan class="cm"># Resolve returned IDs to retained, other cases.</tspan></tspan>
+    <tspan x="768" dy="29">rows = db.scalars(select(MemoryExperience).where(</tspan>
+    <tspan x="768" dy="29">    MemoryExperience.document_id.in_(</tspan>
+    <tspan x="768" dy="25">        list(documents)[:100]),</tspan>
+    <tspan x="768" dy="29">    MemoryExperience.status == <tspan class="str">"RETAINED"</tspan>,</tspan>
+    <tspan x="768" dy="29">    MemoryExperience.incident_id != incident.id</tspan>
+    <tspan x="768" dy="29">)).all()</tspan>
+  </text>
+  <text x="90" y="710" class="file">Excerpted from the project source; formatting adjusted for readability.</text>
+</svg>

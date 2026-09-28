@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="900" viewBox="0 0 1440 900" role="img" aria-labelledby="title desc">
+  <title id="title">Continuity source-checked incident memory architecture</title>
+  <desc id="desc">An analyst reviews an incident and its outcome. Continuity retains the experience in Hindsight, verifies recalled document IDs against retained source records, gives verified history and current evidence to Groq for an advisory recommendation, and sends analyst feedback into the next learning cycle.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#081625"/><stop offset="1" stop-color="#102b40"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#26d6b1"/><stop offset="1" stop-color="#38a6ed"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#48cbb5"/>
+    </marker>
+    <style>
+      text{font-family:Inter,Segoe UI,Arial,sans-serif;fill:#edf5fc}
+      .eyebrow{font-size:17px;font-weight:700;letter-spacing:3px;fill:#71d9c7}
+      .title{font-size:38px;font-weight:750}
+      .name{font-size:24px;font-weight:700}
+      .body{font-size:18px;fill:#bed0e1}
+      .small{font-size:15px;fill:#a7bdd1}
+      .box{fill:#11253a;stroke:#36516a;stroke-width:2}
+      .green{fill:#0d302f;stroke:#2cb99f;stroke-width:2}
+      .blue{fill:#102c43;stroke:#339fe0;stroke-width:2}
+      .line{fill:none;stroke:#48cbb5;stroke-width:3;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect width="1440" height="900" rx="28" fill="url(#bg)"/>
+  <text x="76" y="80" class="eyebrow">CONTINUITY · SECURITY OPERATIONS</text>
+  <text x="76" y="135" class="title">Incident experience, carried forward with its source</text>
+
+  <rect x="76" y="205" width="350" height="160" rx="18" class="box"/>
+  <text x="108" y="250" class="eyebrow">01 · CASE</text>
+  <text x="108" y="294" class="name">Incident + evidence</text>
+  <text x="108" y="329" class="body">Investigation, outcome, side effects</text>
+
+  <rect x="545" y="205" width="350" height="160" rx="18" class="green"/>
+  <text x="577" y="250" class="eyebrow">02 · MEMORY</text>
+  <text x="577" y="294" class="name">Hindsight</text>
+  <text x="577" y="329" class="body">Retains and recalls experience</text>
+
+  <rect x="1014" y="205" width="350" height="160" rx="18" class="blue"/>
+  <text x="1046" y="250" class="eyebrow">03 · PROVENANCE GATE</text>
+  <text x="1046" y="294" class="name">Continuity verifies</text>
+  <text x="1046" y="329" class="body">Document ID · retained source · relevance</text>
+
+  <path d="M426 285 H535" class="line"/>
+  <path d="M895 285 H1004" class="line"/>
+
+  <rect x="1014" y="485" width="350" height="170" rx="18" class="box"/>
+  <text x="1046" y="530" class="eyebrow">04 · REASONING</text>
+  <text x="1046" y="574" class="name">Groq</text>
+  <text x="1046" y="609" class="body">Current evidence + verified history</text>
+  <text x="1046" y="636" class="small">Returns advisory steps with source citations</text>
+
+  <rect x="545" y="485" width="350" height="170" rx="18" class="green"/>
+  <text x="577" y="530" class="eyebrow">05 · HUMAN REVIEW</text>
+  <text x="577" y="574" class="name">Analyst decides</text>
+  <text x="577" y="609" class="body">Accept · modify · reject</text>
+  <text x="577" y="636" class="small">No automatic containment action</text>
+
+  <rect x="76" y="485" width="350" height="170" rx="18" class="box"/>
+  <text x="108" y="530" class="eyebrow">06 · LEARNING LOOP</text>
+  <text x="108" y="574" class="name">Feedback + outcome</text>
+  <text x="108" y="609" class="body">Becomes the next experience</text>
+  <text x="108" y="636" class="small">Failures and side effects stay in context</text>
+
+  <path d="M1189 365 V475" class="line"/>
+  <path d="M1014 570 H905" class="line"/>
+  <path d="M545 570 H436" class="line"/>
+  <path d="M251 485 V405 H251 V375" class="line"/>
+
+  <rect x="76" y="735" width="1288" height="94" rx="18" fill="#0a1c2b" stroke="#28465e" stroke-width="2"/>
+  <text x="112" y="778" class="eyebrow">SAFEGUARDS</text>
+  <text x="300" y="778" class="body">Unlinked or unavailable memory stays explicit</text>
+  <text x="860" y="778" class="body">Synthetic walkthrough · dry-run response</text>
+  <text x="112" y="812" class="small">Hindsight remembers.</text>
+  <text x="300" y="812" class="small">Groq reasons.</text>
+  <text x="477" y="812" class="small">The analyst decides.</text>
+</svg>
