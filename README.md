@@ -12,7 +12,7 @@
 [![Groq](https://img.shields.io/badge/Inference-Groq-F55036)](https://groq.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-2F855A.svg)](LICENSE)
 
-[Quick start](#quick-start) · [How it works](#how-it-works) · [Documentation](#documentation) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
+[Live demo](#live-demo) · [Video walkthrough](#video-walkthrough) · [Quick start](#quick-start) · [How it works](#how-it-works) · [Documentation](#documentation) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
 
 <img src="docs/assets/continuity-memory-flow.png" width="880" alt="Incident evidence becomes Hindsight memory for the next investigation; Groq assists while the analyst decides.">
 
@@ -21,6 +21,14 @@
 Continuity helps security teams carry investigation experience into the next incident. It combines current evidence with source-checked lessons retained in Hindsight, then asks Groq to recommend investigative steps. **The recommendation is advisory; the analyst remains in control.**
 
 > **Demo data is synthetic.** NovaBank cases and controlled web events are exercises. The demo does not attack systems or execute real containment actions.
+
+## Live demo
+
+Explore the live [Continuity demo](http://20.187.115.54/). The instance requires sign-in; administrator credentials are not published in this repository.
+
+## Video walkthrough
+
+Watch the [Continuity walkthrough on YouTube](https://www.youtube.com/watch?v=YKAyLRCVDXI), or [download the MP4](Final-YT.mp4).
 
 ## At a glance
 
