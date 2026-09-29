@@ -24,7 +24,14 @@ Continuity helps security teams carry investigation experience into the next inc
 
 ## Live demo
 
-Explore the live [Continuity demo](http://20.187.115.54/). The instance requires sign-in; administrator credentials are not published in this repository.
+Explore the live [Continuity demo](http://20.187.115.54/).
+
+**Demo credentials:**
+
+- **Email:** `admin@ghostsoc.local`
+- **Password:** `Admin@Password`
+
+The instance is provided for demonstration purposes using synthetic data.
 
 ## Video walkthrough
 
